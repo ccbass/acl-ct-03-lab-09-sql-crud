@@ -32,5 +32,28 @@ describe('sql-crud routes', () => {
 
   })
 
+  it('POST: creates a new todo and returns it', async () => {
+    const newToDo = await request(app)
+      .post('/api/todos/')
+      .send({
+        title: 'new title',
+        description: 'new description',
+        project: 'new project',
+        dueDate: '2021-05-01'
+      })
+
+    expect(newToDo.body).toEqual({
+      data: {
+        id: 5,
+        title: 'new title',
+        description: 'new description',
+        projectGroup: 'new project',
+        dueDate: expect.any(String)
+      },
+      details: 'new todo created'
+    })
+
+  })
+
 
 });
