@@ -21,5 +21,16 @@ describe('sql-crud routes', () => {
 
   })
 
+  it('GET: returns one todo by id', async () => {
+    const oneToDo = await request(app)
+      .get('/api/todos/2')
+
+    expect(oneToDo.body).toEqual({
+      data: expect.any(Object),
+      details: 'single todo'
+    })
+
+  })
+
 
 });
