@@ -18,7 +18,6 @@ describe('sql-crud routes', () => {
     })
     
     expect(allTodos.body.data.length).toEqual(4)
-
   })
 
   it('GET: returns one todo by id', async () => {
@@ -29,7 +28,6 @@ describe('sql-crud routes', () => {
       data: expect.any(Object),
       details: 'single todo'
     })
-
   })
 
   it('POST: creates a new todo and returns it', async () => {
@@ -75,7 +73,22 @@ describe('sql-crud routes', () => {
       },
       details: 'updated todo'
     })
+  })
 
+  it('DELETE: deletes a todo and returns it', async () => {
+    const deletedToDo = await request(app)
+      .delete('/api/todos/4')
+
+    expect(deletedToDo.body).toEqual({
+      data: {
+        id: 4,
+        title: 'title 4',
+        description: 'get the lab done',
+        projectGroup: 'epic 1',
+        dueDate: expect.any(String)
+      },
+      details: 'deleted todo'
+    })
   })
 
 
