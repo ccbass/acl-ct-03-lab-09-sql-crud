@@ -55,5 +55,28 @@ describe('sql-crud routes', () => {
 
   })
 
+  it('PUT: updates a todo and returns it', async () => {
+    const updatedToDo = await request(app)
+      .put('/api/todos/3')
+      .send({
+        title: 'updated title',
+        description: 'updated description',
+        project: 'updated project',
+        dueDate: '2021-05-30'
+      })
+
+    expect(updatedToDo.body).toEqual({
+      data: {
+        id: 3,
+        title: 'updated title',
+        description: 'updated description',
+        projectGroup: 'updated project',
+        dueDate: expect.any(String)
+      },
+      details: 'updated todo'
+    })
+
+  })
+
 
 });
