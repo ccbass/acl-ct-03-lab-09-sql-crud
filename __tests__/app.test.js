@@ -7,4 +7,19 @@ describe('sql-crud routes', () => {
   beforeEach(() => {
     return setup(pool);
   });
+
+  it('GET: returns all todos in DB', async () => {
+    const allTodos = await request(app)
+      .get('/api/todos/')
+
+    expect(allTodos.body).toEqual({
+      data: expect.any(Array),
+      details: 'all todos in DB'
+    })
+    
+    expect(allTodos.body.data.length).toEqual(4)
+
+  })
+
+
 });

@@ -1,21 +1,29 @@
 -- drop schema public cascade;
 -- create schema public;
 
-DROP TABLE IF EXISTS trivia_questions;
+DROP TABLE IF EXISTS todos;
 
 
 -- INT or INTEGER or SERIAL -> 32bit number
 -- BIGINT or BIGINTEGER or BIGSERIAL -> 64bit number
 
-CREATE TABLE trivia_questions (
-  trivia_id INTEGER GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
-  category text NOT NULL,
-  type text NOT NULL,
-  difficulty text NOT NULL,
-  question text NOT NULL,
-  correct_answer text NOT NULL,
-  incorrect text ARRAY[4]
+
+CREATE TABLE todos (
+    todo_id INTEGER GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
+    title text NOT NULL,
+    description text NOT NULL,
+    project_group TEXT NOT NULL,
+    due_date DATE DEFAULT CURRENT_DATE NOT NULL
 );
+
+
+INSERT INTO todos(title, description, project_group, due_date)
+    VALUES
+        ('title 1', 'go food shopping', 'urgent', '2021-04-07'),
+        ('title 2', 'go to the dentist', 'soon', '2021-04-08'),
+        ('title 3', 'learn more about graphs', 'extra projects', '2021-04-09'),
+        ('title 4', 'get the lab done', 'epic 1', '2021-04-10');
+
 
 
 -- CREATE TABLE coffee_orders (
